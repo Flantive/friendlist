@@ -1,0 +1,19 @@
+{
+  "name": "friendlist",
+  "version": "1.0.0",
+  "description": "Basic friendlist RESTful API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Flantive/friendlist.git"
+  },
+  "author": "Mateusz Kmiecik - mateusz.kmiecik@gorwen.pl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Flantive/friendlist/issues"
+  },
+  "homepage": "https://github.com/Flantive/friendlist#readme"
+}
