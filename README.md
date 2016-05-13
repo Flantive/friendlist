@@ -117,11 +117,11 @@ Every object in that array is separate error concerning one of sent params.
 
 To help with testing, only on development environment there are available requests:
 
-    GET /testing/clearDB  # clears DB
-    GET /testing/fillDB/sample  # fills DB with 5 users, each with 1-2 friends
+    GET /testing/clearDB       # clears DB
+    GET /testing/fillDB/sample # fills DB with 5 users, each with 1-2 friends
     GET /testing/fillDB/small  # fills DB with 100 users, each with ~20 friends
-    GET /testing/fillDB/medium  # fills DB with 10000 users, each with ~100 friends
-    GET /testing/fillDB/big  # fills DB with 100000 users, each with ~250 friends
+    GET /testing/fillDB/medium # fills DB with 10000 users, each with ~100 friends
+    GET /testing/fillDB/big    # fills DB with 100000 users, each with ~250 friends
 
 **Warning!**
 
