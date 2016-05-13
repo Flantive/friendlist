@@ -129,3 +129,11 @@ To help with additional testing, only on development environment there are avail
 **Warning!**
 
 Request `GET /testing/fillDB/big` will take some time to execute (up to 60sec) and cause higher memory (RAM) demand (temporary, during execution). Before using this request try using `GET /testing/fillDB/medium`.
+
+## Production Environment
+
+Tu run our application in production environment we start it with additional varriable:
+
+    NODE_ENV=production node server.js
+
+Additional */testing* routes will be disabled, and application will not premit running clearing or filling functions for our DB.
