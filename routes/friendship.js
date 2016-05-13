@@ -13,8 +13,10 @@ const User = require('../models/user.js');
  */
 module.exports.create = function (req, res) {
   // Add validation rules
-  req.checkBody('uid1', 'uid1 param required: non-negative Integer').notEmpty().isUID();
-  req.checkBody('uid2', 'uid2 param required: non-negative Integer').notEmpty().isUID();
+  req.checkBody('uid1', 'param required').notEmpty();
+  req.checkBody('uid2', 'param required').notEmpty();
+  req.checkBody('uid1', 'uid1 has to be a non-negative Integer').isUID();
+  req.checkBody('uid2', 'uid2 has to be a non-negative Integer').isUID();
   req.checkBody('uid1', 'uid1 cannot be equal to uid2').notEqual(req.body.uid2);
   
   // Validate and get errors
