@@ -21,6 +21,9 @@ Then, go to created folder and install all dependecies:
     cd friendlist
     npm install
 
+## Configuration
+
+In `config.js` file in application main directory, you have to specify IP and port where your MongoDB database is available. Additionaly you can, but don't have to change a MongoDB collection name, where application data will be stored. If this collection doesn't exist, it will be created.
 
 ## Unit/Integration Testing
 
