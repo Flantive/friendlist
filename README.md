@@ -16,8 +16,9 @@ downloading this application to dedicated folder on your server. If you are usin
 
     git clone https://github.com/Flantive/friendlist.git
 
-Then, to install all dependecies you need to run:
+Then, go to created folder and install all dependecies:
 
+    cd friendlist
     npm install
 
 
@@ -27,7 +28,9 @@ When npm finishes downloading all modules, you are ready to run prepared unit an
 
     npm test
 
-All tests from */test* directory will be initialised by **motcha** module.
+All tests from */tests* directory will be initialised by **motcha** module. To run integration tests, we need to start our application. If default port of this application (8080) is occupied in your environment, tell test to start application on different port:
+
+    PORT=[port] npm test
 
 
 ## Functional Testing
@@ -67,7 +70,7 @@ We should get "200: OK" response, with empty array `[]` and time of execution. B
     []
     0.026
 
-### POSTS requests
+### POST requests
 
 Now test if after successful *POST* request friendlist is changed:
 
@@ -75,7 +78,7 @@ Now test if after successful *POST* request friendlist is changed:
     curl -i -X GET http://localhost:8080/friendlist/1 -w \\n%{time_total}\\n
     curl -i -X GET http://localhost:8080/friendlist/2 -w \\n%{time_total}\\n
 
-With *POST* request to */friendship* we need to send additional data: object with user ID's, that will be friends. Object in our example is `{"uid1": 1,"uid2": 2}`, so we request to add friendship between user with ID=1 and ID=2. We expect to receive "204: No Content" response, when friendship is added.
+With *POST* request to */friendship* we need to send additional data: object with ID's of users that will be friends. Object in our example is `{"uid1": 1,"uid2": 2}`, so we request to add friendship between user with ID=1 and ID=2. We expect to receive "204: No Content" response, when friendship is added.
 We can check if friendship exist in database with *GET* request for friendlist of user with ID=1 and ID=2. Both requests should result in response with friendlist array with one element being added friend.
 
 ### DELETE requests
@@ -91,7 +94,7 @@ After successful *DELETE*, we send *GET* requests to check if users 1 and 2 no l
 
 ### Requests with wrong/insufficient data
 
-Final thing we can test is if requesting a resource with incorrect data (param or body) will result in "422: Unprocessable Entity" response. We expect that response to every wrognly formated request.
+Final thing we can test is if requesting a resource with incorrect data (param or body) will result in "422: Unprocessable Entity" response. We expect that response to every wrognly formated, but existing request.
 
     curl -i -X GET http://localhost:8080/friendlist/abc -w \\n%{time_total}\\n
     curl -i -X POST -H "Content-Type:application/json" http://localhost:8080/friendship/ -d '{"uid1": "a","uid2": "a"}' -w \\n%{time_total}\\n
@@ -104,7 +107,7 @@ Each of these requests should result in "422: Unprocessable Entity" response, wi
         param: "param_name",
         msg: "error_message",
         value: "value_of_sent_param"
-      }
+      },
       ...
     ]
 
@@ -114,11 +117,11 @@ Every object in that array is separate error concerning one of sent params.
 
 To help with testing, only on development environment there are available requests:
 
-    GET /testing/clearDB # clears DB
-    GET /testing/fillDB/sample # fills DB with 5 users, each with 1-2 friends
-    GET /testing/fillDB/small # fills DB with 100 users, each with ~20 friends
-    GET /testing/fillDB/medium # fills DB with 10000 users, each with ~100 friends
-    GET /testing/fillDB/big # fills DB with 100000 users, each with ~250 friends
+    GET /testing/clearDB  # clears DB
+    GET /testing/fillDB/sample  # fills DB with 5 users, each with 1-2 friends
+    GET /testing/fillDB/small  # fills DB with 100 users, each with ~20 friends
+    GET /testing/fillDB/medium  # fills DB with 10000 users, each with ~100 friends
+    GET /testing/fillDB/big  # fills DB with 100000 users, each with ~250 friends
 
 **Warning!**
 
