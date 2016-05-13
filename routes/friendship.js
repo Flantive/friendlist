@@ -48,7 +48,7 @@ module.exports.create = function (req, res) {
  */
 module.exports.delete = function (req, res) {
   // Add validation rules
-  req.checkParams('id', 'Id must be formated as: UID1 + "-" + UID2').properDeleteId();
+  req.checkParams('id', 'Id must be formated as: UID1 + "-" + UID2').isProperDeleteId();
   
   // Validate and get errors
   const errors = req.validationErrors();

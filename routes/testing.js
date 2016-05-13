@@ -6,6 +6,19 @@
 // Get our lib for clearing/filling DB
 const dbFiller = require('../libs/database-filler.js');
 
+/*  Request: GET /testing/clearDB
+ *  Function: Clears our DB
+ */
+module.exports.clearDB = function (req, res) {
+  // Clear DB
+  dbFiller.clearCollection(() => {
+    // Send response to request
+    res.status(200).json({
+      result: 'ok',
+    });
+  });
+}
+
 /*  Request: GET /testing/fillDB/sample
  *  Function: Fills DB with very little specified documents
  */
@@ -59,8 +72,9 @@ module.exports.fillDBmedium = function (req, res) {
 
 /*  Request: GET /testing/fillDB/big
  *  Function: Fills DB with 100000 users (uid 1-100000) witch most have 250 friends
- *  Warning: using this function will take some time to execute (up to 60sec) 
- *           and cause higher RAM memory demand (temporary, during execution)
+ *  Warning: using this request will take some time to execute (up to 60sec) 
+ *           and cause higher memory (RAM) demand (temporary, during execution).
+ *           Before using this request try using "GET /testing/fillDB/medium"
  */
 module.exports.fillDBbig = function (req, res) {
   // Clear DB

@@ -73,4 +73,20 @@ describe('Integration: model User', () => {
       return done();
     });
   });
+
+  it('deleteFriendship: deletes friendship between 2 existing users', (done) => {
+    User.addFriendship(1, 2, (r) => {
+      assert.ok(r.result);
+      
+      return done();
+    });
+  });
+
+  it('deleteFriendship: deletes friendship between 2 not existing users', (done) => {
+    User.addFriendship(100, 1000, (r) => {
+      assert.ok(r.result);
+      
+      return done();
+    });
+  });
 });

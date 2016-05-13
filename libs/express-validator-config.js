@@ -1,7 +1,12 @@
-const assert   = require('assert');
+/*  Name: express-validator-config.js
+ *  Function: Adds custom functions to validate data sent in API requests
+ */
 
+// Export
 module.exports = {
+  // Prepare custom validators to our validation module
   customValidators: {
+    // Checks if sent UID is correct (non-negative Integer)
     isUID: function(value) {
       return (typeof value !== 'object')
         && !isNaN(value) 
@@ -9,7 +14,9 @@ module.exports = {
         && (value >= 0);
     },
 
-    properDeleteId: function(value) {
+    // Checks if sent DELETE :id is correctly formated: UID + '-' + UID
+    // and UIDs are not the same
+    isProperDeleteId: function(value) {
       if(typeof value !== 'string'){
         return false;
       }
@@ -17,11 +24,12 @@ module.exports = {
       const UIDs = value.split('-');
 
       return UIDs.length === 2
+        && UIDs[0] !== UIDs[1]
         && this.isUID(UIDs[0])
-        && this.isUID(UIDs[1])
-        && UIDs[0] != UIDs[1];
+        && this.isUID(UIDs[1]);
     },
 
+    // Checks if values are not equal
     notEqual: function(value, notEqual) {
       return value !== notEqual;
     }

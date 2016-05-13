@@ -65,41 +65,41 @@ describe('Unit: lib/express-validator-config', () => {
       });
     });
 
-    describe('properDeleteId', () => {
+    describe('isProperDeleteId', () => {
       it('returns true for String: :UID+"-"+:UID', (done) => {
-        assert.ok(evConfig.customValidators.properDeleteId('1-2'));
+        assert.ok(evConfig.customValidators.isProperDeleteId('1-2'));
         return done();
       });
       
       it('returns false for a String with 2 identical UIDs', (done) => {
-        assert.ok(!evConfig.customValidators.properDeleteId('1-1'));
+        assert.ok(!evConfig.customValidators.isProperDeleteId('1-1'));
         return done();
       });
 
       it('returns false for a String with incorrect UIDs', (done) => {
-        assert.ok(!evConfig.customValidators.properDeleteId('-1-1'));
-        assert.ok(!evConfig.customValidators.properDeleteId('1,12-1'));
-        assert.ok(!evConfig.customValidators.properDeleteId('1.12-1'));
-        assert.ok(!evConfig.customValidators.properDeleteId('1-1,12'));
-        assert.ok(!evConfig.customValidators.properDeleteId('1-1.12'));
-        assert.ok(!evConfig.customValidators.properDeleteId('1-a'));
-        assert.ok(!evConfig.customValidators.properDeleteId('a-1'));
+        assert.ok(!evConfig.customValidators.isProperDeleteId('-1-1'));
+        assert.ok(!evConfig.customValidators.isProperDeleteId('1,12-1'));
+        assert.ok(!evConfig.customValidators.isProperDeleteId('1.12-1'));
+        assert.ok(!evConfig.customValidators.isProperDeleteId('1-1,12'));
+        assert.ok(!evConfig.customValidators.isProperDeleteId('1-1.12'));
+        assert.ok(!evConfig.customValidators.isProperDeleteId('1-a'));
+        assert.ok(!evConfig.customValidators.isProperDeleteId('a-1'));
         return done();
       });
 
       it('returns false for a String with incorrect number of UIDs', (done) => {
-        assert.ok(!evConfig.customValidators.properDeleteId('1'));
-        assert.ok(!evConfig.customValidators.properDeleteId('2-1-3'));
+        assert.ok(!evConfig.customValidators.isProperDeleteId('1'));
+        assert.ok(!evConfig.customValidators.isProperDeleteId('2-1-3'));
         return done();
       });
       
       it('returns false for not a String', (done) => {
-        assert.ok(!evConfig.customValidators.properDeleteId(123));
-        assert.ok(!evConfig.customValidators.properDeleteId([]));
-        assert.ok(!evConfig.customValidators.properDeleteId(["123-123"]));
-        assert.ok(!evConfig.customValidators.properDeleteId({}));
-        assert.ok(!evConfig.customValidators.properDeleteId(true));
-        assert.ok(!evConfig.customValidators.properDeleteId(false));
+        assert.ok(!evConfig.customValidators.isProperDeleteId(123));
+        assert.ok(!evConfig.customValidators.isProperDeleteId([]));
+        assert.ok(!evConfig.customValidators.isProperDeleteId(["123-123"]));
+        assert.ok(!evConfig.customValidators.isProperDeleteId({}));
+        assert.ok(!evConfig.customValidators.isProperDeleteId(true));
+        assert.ok(!evConfig.customValidators.isProperDeleteId(false));
         return done();
       });
     });

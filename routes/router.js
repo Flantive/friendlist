@@ -1,5 +1,5 @@
 /*  Name: router.js
- *  Function: binds functions with expected requests to our API
+ *  Function: binds functions to requests in our API
  */
 
 // Get functions for specific routes
@@ -7,7 +7,7 @@ const friendlist = require('../routes/friendlist.js');
 const friendship = require('../routes/friendship.js');
 const testing    = require('../routes/testing.js');
 
-// Exsport 
+// Export 
 module.exports = function (app) {
   return {
     // Calls functions defining our routes, each core route has separate function
@@ -37,6 +37,7 @@ module.exports = function (app) {
 
       // Bind only on development environment
       if(environment === 'development'){
+        app.get('/testing/clearDB', testing.clearDB);
         app.get('/testing/fillDB/sample', testing.fillDBsample);
         app.get('/testing/fillDB/small', testing.fillDBsmall);
         app.get('/testing/fillDB/medium', testing.fillDBmedium);

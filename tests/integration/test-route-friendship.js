@@ -100,6 +100,23 @@ describe('Integration: POST /friendship', () => {
         });
       });
     });
+
+    it('POST: creating existing friendship results in a positive response', (done) => {
+      supertest(server)
+      .post('/friendship')
+      .send({ uid1: 10, uid2: 11})
+      .expect(204)
+      .end(function(err, response){
+        if(err) 
+          throw err;
+
+        supertest(server)
+        .post('/friendship')
+        .send({ uid1: 10, uid2: 11})
+        .expect(204)
+        .end(done);
+      });
+    });
   });
 });
 
@@ -200,5 +217,19 @@ describe('Integration: DELETE /friendship/:id', () => {
       });
     });
 
+    it('DELETE: deleting non-existing friendship results in a positive response', (done) => {
+      supertest(server)
+      .delete('/friendship/10-11')
+      .expect(204)
+      .end(function(err, response){
+        if(err) 
+          throw err;
+
+        supertest(server)
+        .delete('/friendship/10-11')
+        .expect(204)
+        .end(done);
+      });
+    });
   });
 });
