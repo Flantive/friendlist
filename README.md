@@ -48,13 +48,13 @@ If we want to test this requests, firstly we need to start our application with 
 
     node server.js 
 
-Or when defaul port (8080) is occupied:
+Or when default port (8080) is occupied:
 
     PORT=[port] node server.js
 
 ### GET requests
 
-After successful start of our server, we are ready to send some requests. We will use `curl` command. To all requests posted in this documentation, we will an execution time, to see how long it took to get the response.
+After successful start of our server, we are ready to send some requests. We will use `curl` command. To all requests posted in this documentation, we will add an execution time, to see how long it took to get the response.
 
 Lest start with simple GET request to get friendlist of non-existing user (DB is currently empty):
 
@@ -82,7 +82,7 @@ Now test if after successful *POST* request friendlist is changed:
     curl -i -X GET http://localhost:8080/friendlist/2 -w \\n%{time_total}\\n
 
 With *POST* request to */friendship* we need to send additional data: object with ID's of users that will be friends. Object in our example is `{"uid1": 1,"uid2": 2}`, so we request to add friendship between user with ID=1 and ID=2. We expect to receive "204: No Content" response, when friendship is added.
-We can check if friendship exist in database with *GET* request for friendlist of user with ID=1 and ID=2. Both requests should result in response with friendlist array with one element being added friend.
+Now we can check if friendship was saved in database. We send *GET* requests for friendlist of users with ID=1 and ID=2. Both requests should result in response with friendlist array with one element being added friend.
 
 ### DELETE requests
 
@@ -114,17 +114,17 @@ Each of these requests should result in "422: Unprocessable Entity" response, wi
       ...
     ]
 
-Every object in that array is separate error concerning one of sent params.
+Every object in that array is separate error concerning one of sent parameters.
 
 ## Additional Testing
 
-To help with testing, only on development environment there are available requests:
+To help with additional testing, only on development environment there are available requests:
 
     GET /testing/clearDB       # clears DB
-    GET /testing/fillDB/sample # fills DB with 5 users, each with 1-2 friends
-    GET /testing/fillDB/small  # fills DB with 100 users, each with ~20 friends
-    GET /testing/fillDB/medium # fills DB with 10000 users, each with ~100 friends
-    GET /testing/fillDB/big    # fills DB with 100000 users, each with ~250 friends
+    GET /testing/fillDB/sample # fills DB with 5 users, ID: 1-5, each with 1-2 friends
+    GET /testing/fillDB/small  # fills DB with 100 users, ID: 1-100, each with ~20 friends
+    GET /testing/fillDB/medium # fills DB with 10000 users, ID: 1-10000, each with ~100 friends
+    GET /testing/fillDB/big    # fills DB with 100000 users, ID: 1-100000, each with ~250 friends
 
 **Warning!**
 
