@@ -1,4 +1,5 @@
-/*  Name: router.js
+/*  
+ *  Name: router.js
  *  Function: binds functions to requests in our API
  */
 

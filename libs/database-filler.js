@@ -1,4 +1,5 @@
-/*  Name: database-filler.js
+/*  
+ *  Name: database-filler.js
  *  Function: prepare functions for clearing and filling our DB
  *  Warning: only for development/testing purposes
  */
@@ -17,7 +18,6 @@ module.exports = {
   clearCollection: function (callback) {
     // Work only on "development" environment
     if(environment === 'development'){
-      // Drop collection
       User.Model.collection.drop(() => {
         if(callback){
           callback();
@@ -30,13 +30,11 @@ module.exports = {
   sampleData: function (callback) {
     // Work only on "development" environment
     if(environment === 'development'){
-      // Add 5 defined users
       User.add({ _id: 1, friendlist: [2, 3] });
       User.add({ _id: 2, friendlist: [1, 3] });
       User.add({ _id: 3, friendlist: [1, 2] });
       User.add({ _id: 4, friendlist: [5] });
       User.add({ _id: 5, friendlist: [4] }, () => {
-        // Call back after last user is added
         if(callback){
           callback();
         }
@@ -44,7 +42,8 @@ module.exports = {
     }
   },
 
-  /*  Function: insert fixed amount of users into DB
+  /*  
+   *  Function: insert fixed amount of users into DB
    *  Params: users (int) - amount of users to add
    *          conn (int) - amount of friends each user should have (edge users will have half)
    *          start (int) - from what ID users should be enumerated
@@ -52,7 +51,6 @@ module.exports = {
   fixedAmount: function (users, conn, start, callback) {
     // Work only on "development" environment
     if(environment === 'development'){
-      // Define varriables
       let friendIdLowest;
       let friendIdHighest;
       let friendlist;
@@ -61,18 +59,15 @@ module.exports = {
 
       // Add "users" amount of users from "start" ID
       for(i = start; i <= users+start-1; i++){
-        // Get edge friend IDs
         friendIdLowest  = i - (conn/2) < 1 ? 1 : i - (conn/2);
         friendIdHighest = i + (conn/2) > users ? users : i + (conn/2);
 
-        // Prepare empty array to store user friendlist
         friendlist = [];
 
-        // Enumerate friend IDs from "friendIdLowest" to "friendIdHighest"
+        // Add friends to friendlist
         for(j = friendIdLowest; j <= friendIdHighest; j++){
           // Do not add user himself
           if(i != j){
-            // Add friend id to "frienslist" array
             friendlist.push(j);
           }
         }

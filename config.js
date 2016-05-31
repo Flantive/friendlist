@@ -1,4 +1,5 @@
-/*  Name: config.js
+/*  
+ *  Name: config.js
  *  Function: return config of our APP
  */
 

@@ -1,4 +1,5 @@
-/*  Name: server.js
+/*  
+ *  Name: server.js
  *  Function: Main file, used to start the application
  *  Description: Application provides a simple RESTful API to store and edit user
  *               friendlists.

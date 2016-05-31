@@ -1,4 +1,5 @@
-/*  Name: express-validator-config.js
+/*  
+ *  Name: express-validator-config.js
  *  Function: Adds custom functions to validate data sent in API requests
  */
 

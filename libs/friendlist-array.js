@@ -1,10 +1,12 @@
-/*  Name: friendlist-array.js
+/*  
+ *  Name: friendlist-array.js
  *  Function: prepare functions for easy and efficient friendlist array management
  */
 
 // Export functions
 module.exports = {
-  /*  Function: add new user ID into friendlist array
+  /*  
+   *  Function: add new user ID into friendlist array
    *  Params: uid (int) - new friend ID
    *          friendlistArray (array) - sorted array (ascending) of IDs (integers)
    */
@@ -12,17 +14,15 @@ module.exports = {
     // Check if user is already on friendlist and get position in array to put him
     const friendOnList = this.friendOnList(uid, friendlistArray);
 
-    // Add him if he is not present on friendlist
     if(!friendOnList.isPresent){
-      // Insert user ID at specified position
       friendlistArray.splice(friendOnList.position, 0, uid)
     }
 
-    // Return frienslist (changed or not)
     return friendlistArray;
   },
 
-  /*  Function: remove user ID from friendlist array
+  /*  
+   *  Function: remove user ID from friendlist array
    *  Params: uid (int) - new friend ID
    *          friendlistArray (array) - sorted array (ascending) of IDs (integers)
    */
@@ -30,17 +30,15 @@ module.exports = {
     // Check if user is already on friendlist and get his position in array
     const friendOnList = this.friendOnList(uid, friendlistArray);
     
-    // Remove him if he is present on friendlist
     if(friendOnList.isPresent){
-      // Remove ID from specified position
       friendlistArray.splice(friendOnList.position, 1)
     }
 
-    // Return frienslist (changed or not)
     return friendlistArray;
   },
 
-  /*  Function: checks if user ID is on friendlist array and gets array position (key)
+  /*  
+   *  Function: checks if user ID is on friendlist array and gets array position (key)
    *            of that ID or position where that ID should be inserted
    *  Params: uid (int) - new friend ID
    *          friendlistArray (array) - sorted array (ascending) of IDs (integers)
@@ -53,19 +51,16 @@ module.exports = {
     // Get position of "uid" or where it should be inserted in "friendlistArray"
     const position = this.locationOf(uid, friendlistArray);
 
-    // Prepare response
     const response = {
-      // If position points to searched element
       isPresent: parseFloat(friendlistArray[position]) === parseFloat(uid),
-      // Save that position
       position: position
     }
 
-    // Return prepared resposne
     return response;
   },
 
-  /*  Function: returns position of element in sorted array if that element is present,
+  /*  
+   *  Function: returns position of element in sorted array if that element is present,
    *            if it's not present, gets position where it should be inserted to keep 
    *            the array sorted. Implements binary search.
    *  Params: element (number) - element to look for in array "arr"
@@ -82,7 +77,7 @@ module.exports = {
       return pivot;
     }
     
-    // If 1 position remains, but its not our element (if above)
+    // If 1 position remains
     if(end-start <= 1){
       // If array element is bigger then what we are looking for
       if(arr[pivot] > element){
